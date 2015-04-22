@@ -274,7 +274,7 @@ Login.prototype.postLogin = function(req, res, next) {
           // let lockit handle the response
           if (config.login.handleResponse) {
             // send only JSON when REST is active
-            if (config.rest) return res.send(204);
+            if (config.rest) return res.sendStatus(204);
 
             // redirect to target url
             res.redirect(target);
@@ -345,7 +345,7 @@ Login.prototype.postTwoFactor = function(req, res, next) {
       // destroy current session
       return utils.destroy(req, function() {
         // send only JSON when REST is active
-        if (config.rest) return res.send(401);
+        if (config.rest) return res.sendStatus(401);
         res.redirect(loginRoute + '?redirect=' + target);
       });
     }
@@ -361,7 +361,7 @@ Login.prototype.postTwoFactor = function(req, res, next) {
     // let lockit handle the response
     if (config.login.handleResponse) {
       // send only JSON when REST is active
-      if (config.rest) return res.send(204);
+      if (config.rest) return res.sendStatus(204);
 
       // redirect to target url
       res.redirect(target);
@@ -404,7 +404,7 @@ Login.prototype.getLogout = function(req, res, next) {
     if (config.login.handleResponse) {
 
       // send JSON when REST is active
-      if (config.rest) return res.send(204);
+      if (config.rest) return res.sendStatus(204);
 
       // custom or built-in view
       var view = config.login.views.loggedOut || join('get-logout');
