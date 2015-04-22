@@ -150,7 +150,7 @@ Login.prototype.postLogin = function(req, res, next) {
       error = 'Invalid user or password';
 
       // send only JSON when REST is active
-      if (config.rest) return res.json(403, {error: error});
+      if (config.rest) return res.status(403).json({error: error});
 
       // render view
       res.status(403);
