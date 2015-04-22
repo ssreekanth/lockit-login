@@ -121,7 +121,7 @@ Login.prototype.postLogin = function(req, res, next) {
     error = 'Please enter your email/username and password';
 
     // send only JSON when REST is active
-    if (config.rest) return res.json(403, {error: error});
+    if (config.rest) return res.status(403).json({error: error});
 
     // render view
     res.status(403);
@@ -169,7 +169,7 @@ Login.prototype.postLogin = function(req, res, next) {
       error = 'The account is temporarily locked';
 
       // send only JSON when REST is active
-      if (config.rest) return res.json(403, {error: error});
+      if (config.rest) return res.status(403).json({error: error});
 
       // render view
       res.status(403);
@@ -216,7 +216,7 @@ Login.prototype.postLogin = function(req, res, next) {
           if (err) return next(err);
 
           // send only JSON when REST is active
-          if (config.rest) return res.json(403, {error: errorMessage});
+          if (config.rest) return res.status(403).json({error: errorMessage});
 
           // send error message
           res.status(403);
